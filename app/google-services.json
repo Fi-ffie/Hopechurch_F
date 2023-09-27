@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "307489916210",
+    "project_id": "hopechurchapp-91989",
+    "storage_bucket": "hopechurchapp-91989.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:307489916210:android:b9965bcebf3a9bbf14c32b",
+        "android_client_info": {
+          "package_name": "com.fiona02.hopechurchapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzuNsDGol2etMrD1t4Q8efv5PqpHBw0WY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
