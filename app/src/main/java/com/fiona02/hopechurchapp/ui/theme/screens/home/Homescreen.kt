@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -21,12 +20,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.fiona02.hopechurchapp.navigation.ROUTE_MASS_SCHEDULE
-import com.fiona02.hopechurchapp.navigation.ROUTE_SERMONS
-import com.fiona02.hopechurchapp.navigation.ROUTE_REQUEST_SERVICE
-import com.fiona02.hopechurchapp.navigation.ROUTE_OFFERINGS
-import com.fiona02.hopechurchapp.navigation.ROUTE_GROUP_LINKS
 import com.fiona02.hopechurchapp.navigation.ROUTE_CONTACT_US
+import com.fiona02.hopechurchapp.navigation.ROUTE_GROUP_LINKS
+import com.fiona02.hopechurchapp.navigation.ROUTE_MASS_SCHEDULE
+import com.fiona02.hopechurchapp.navigation.ROUTE_OFFERINGS
+import com.fiona02.hopechurchapp.navigation.ROUTE_REQUEST_SERVICE
 
 @Composable
 fun Homescreen(navController: NavHostController){
@@ -50,13 +48,6 @@ fun Homescreen(navController: NavHostController){
         }, colors = ButtonDefaults.buttonColors()
             ,modifier = Modifier.fillMaxWidth()) {
             Text(text = "Mass Schedule.")
-        }
-        Spacer(modifier = Modifier.height(5.dp))
-
-        Button(onClick = {
-            navController.navigate(ROUTE_SERMONS)
-        }, modifier = Modifier.fillMaxWidth()) {
-            Text(text = "Sermons.")
         }
         Spacer(modifier = Modifier.height(5.dp))
 

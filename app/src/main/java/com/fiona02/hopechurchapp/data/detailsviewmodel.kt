@@ -13,7 +13,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class detailsviewmodel (var navController: NavHostController, var context: Context){
+class detailsviewmodel (var navController: NavHostController, var context: Context) {
     var authRepository: AuthViewModel
     var progress: ProgressDialog
 
@@ -29,10 +29,10 @@ class detailsviewmodel (var navController: NavHostController, var context: Conte
 
 
     fun saveDetails(name: String, phoneNumber: String, type: String, date: String, time: String) {
-        var id = System.currentTimeMillis().toString()
-        var productData = saveDetails(name, phoneNumber, type, date, time)
-        var productRef = FirebaseDatabase.getInstance().getReference()
-            .child("Products/$id")
+        val id = System.currentTimeMillis().toString()
+        val productData = Details(name, phoneNumber, type, date, time, id)
+        val productRef = FirebaseDatabase.getInstance().getReference()
+            .child("Details/$id")
         progress.show()
         productRef.setValue(productData).addOnCompleteListener {
             progress.dismiss()
@@ -44,12 +44,11 @@ class detailsviewmodel (var navController: NavHostController, var context: Conte
             }
         }
     }
-
     fun viewDetails(
         product: MutableState<Details>,
         products: SnapshotStateList<Details>
     ): SnapshotStateList<Details> {
-        var ref = FirebaseDatabase.getInstance().getReference().child("Products")
+        var ref = FirebaseDatabase.getInstance().getReference().child("Details")
 
         progress.show()
         ref.addValueEventListener(object : ValueEventListener {
@@ -69,34 +68,35 @@ class detailsviewmodel (var navController: NavHostController, var context: Conte
         })
         return products
     }
-
-    fun deleteDetails(id: String) {
-        var delRef = FirebaseDatabase.getInstance().getReference()
-            .child("Products/$id")
-        progress.show()
-        delRef.removeValue().addOnCompleteListener {
-            progress.dismiss()
-            if (it.isSuccessful) {
-                Toast.makeText(context, "Details deleted", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(context, it.exception!!.message, Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
-    fun updateDetails(name: String, phoneNumber: String, type: String, date: String, time: String) {
-        var id = System.currentTimeMillis().toString()
-        var updateRef = FirebaseDatabase.getInstance().getReference()
-            .child("Products/$id")
-        progress.show()
-        var updateData = updateDetails(name, phoneNumber, type, date, time)
-        updateRef.setValue(updateData).addOnCompleteListener {
-            progress.dismiss()
-            if (it.isSuccessful) {
-                Toast.makeText(context, "Update successful", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(context, it.exception!!.message, Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
 }
+
+
+//    fun deleteDetails(id: String) {
+//        var delRef = FirebaseDatabase.getInstance().getReference()
+//            .child("Details/$id")
+//        progress.show()
+//        delRef.removeValue().addOnCompleteListener {
+//            progress.dismiss()
+//            if (it.isSuccessful) {
+//                Toast.makeText(context, "Details deleted", Toast.LENGTH_SHORT).show()
+//            } else {
+//                Toast.makeText(context, it.exception!!.message, Toast.LENGTH_SHORT).show()
+//            }
+//        }
+//    }
+//
+//    fun updateDetails(name: String, phoneNumber: String, type: String, date: String, time: String) {
+//        var id = System.currentTimeMillis().toString()
+//        var updateRef = FirebaseDatabase.getInstance().getReference()
+//            .child("Details/$id")
+//        progress.show()
+//        var updateData = updateDetails(name, phoneNumber, type, date, time)
+//        updateRef.setValue(updateData).addOnCompleteListener {
+//            progress.dismiss()
+//            if (it.isSuccessful) {
+//                Toast.makeText(context, "Update successful", Toast.LENGTH_SHORT).show()
+//            } else {
+//                Toast.makeText(context, it.exception!!.message, Toast.LENGTH_SHORT).show()
+//            }
+//        }
+//    }

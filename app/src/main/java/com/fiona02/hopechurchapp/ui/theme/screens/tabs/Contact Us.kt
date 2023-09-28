@@ -63,7 +63,7 @@ fun ContactUs(navController: NavHostController) {
 
         OutlinedButton(
             onClick = {
-                val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "+254710423445"))
+                val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "+254719713965"))
 
                 if (ContextCompat.checkSelfPermission(
                         context,

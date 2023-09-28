@@ -94,7 +94,7 @@ fun RequestService(navController: NavHostController) {
         TextField(
             value = date,
             onValueChange = { date = it },
-            label = { Text("Date") },
+            label = { Text("Date (Dd/Mm/YYYY)") },
             modifier = Modifier.fillMaxWidth()
         )
 

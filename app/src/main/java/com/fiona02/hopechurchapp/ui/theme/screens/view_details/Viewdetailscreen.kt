@@ -1,5 +1,7 @@
 package com.fiona02.hopechurchapp.ui.theme.screens.view_details
 
+import android.annotation.SuppressLint
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -8,7 +10,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Button
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
@@ -24,11 +27,14 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.fiona02.hopechurchapp.data.detailsviewmodel
 import com.fiona02.hopechurchapp.models.Details
-import com.fiona02.hopechurchapp.navigation.ROUTE_VIEW_DETAILS
 
+@SuppressLint("SuspiciousIndentation")
 @Composable
 fun ViewDetails(navController: NavHostController){
-    Column(modifier = Modifier.fillMaxSize(),
+    Column(modifier = Modifier
+        .fillMaxSize()
+        .verticalScroll(rememberScrollState())
+        .background(Color.DarkGray),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top)
 
@@ -37,14 +43,13 @@ fun ViewDetails(navController: NavHostController){
         val detailsRepository = detailsviewmodel(navController, context)
         val emptyDetailState = remember { mutableStateOf(Details("","","","","","")) }
         var emptyDetailsListState = remember { mutableStateListOf<Details>() }
-
         var details = detailsRepository.viewDetails(emptyDetailState, emptyDetailsListState)
 
 
             Text(text = "Request Details",
                 fontSize = 30.sp,
                 fontFamily = FontFamily.Cursive,
-                color = Color.Red)
+                color = Color.White)
 
             Spacer(modifier = Modifier.height(20.dp))
 
@@ -58,8 +63,7 @@ fun ViewDetails(navController: NavHostController){
                         time = it.time,
                         id=it.id,
                         navController = navController,
-                        detailsRepository = detailsRepository,
-
+                        detailsRepository = detailsRepository
                     )
                 }
             }
@@ -74,21 +78,23 @@ fun ItemDetails(name:String, phonenumber:String, type:String, date:String, time:
         Text(text = type)
         Text(text = date)
         Text(text = time)
-        Button(onClick = {
-            detailsRepository.deleteDetails(id)
-        }) {
-            Text(text = "Delete")
-        }
-        Button(onClick = {
-            navController.navigate(ROUTE_VIEW_DETAILS+"/$id")
-        }) {
-            Text(text = "Update")
-        }
     }
 }
+
+//        Button(onClick = {
+//            detailsRepository.deleteDetails(id)
+//        }) {
+//            Text(text = "Delete")
+//        }
+//        Button(onClick = {
+//            navController.navigate(ROUTE_VIEW_DETAILS+"/$id")
+//        }) {
+//            Text(text = "Update")
+//        }
+//    }
+//}
 //@Preview
 //@Composable
 //fun ViewDetailsPreview() {
 //    ViewDetails(rememberNavController())
-//
 //}
